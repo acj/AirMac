@@ -1,5 +1,6 @@
+#import "Constants.h"
 #import "HTTPServer.h"
-
+#import "Util.h"
 
 @implementation HTTPServer
 
@@ -347,7 +348,7 @@
 <plist version=\"1.0\">\n\
 <dict>\n\
 \t<key>deviceid</key>\n\
-\t<string>94:0C:6D:E6:80:56</string>\n\
+\t<string>%@</string>\n\
 \t<key>features</key>\n\
 \t<integer>119</integer>\n\
 \t<key>model</key>\n\
@@ -357,7 +358,7 @@
 \t<key>srcvers</key>\n\
 \t<string>101.28</string>\n\
 </dict>\n\
-</plist>\n"] dataUsingEncoding: NSASCIIStringEncoding];
+</plist>\n", [Util getMacAddressForInterface:UseNetworkInterface]] dataUsingEncoding: NSASCIIStringEncoding];
 			 
 			 
 			CFHTTPMessageRef response = CFHTTPMessageCreateResponse(kCFAllocatorDefault, 200, NULL, kCFHTTPVersion1_1); // OK
