@@ -44,7 +44,10 @@
  Copyright � 2005 Apple Computer, Inc., All Rights Reserved
  */ 
 
+#import "Constants.h"
 #import "TCPServer.h"
+#import "Util.h"
+
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <unistd.h>
@@ -229,6 +232,8 @@ static void TCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType typ
 
     // we can only publish the service if we have a type to publish with
     if (nil != type) {
+        NSString *macAddress = [Util getMacAddressForInterface:UseNetworkInterface];
+        
         NSString *publishingDomain = domain ? domain : @"";
         NSString *publishingName = nil;
         if (nil != name) {
@@ -240,6 +245,10 @@ static void TCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType typ
             }
         }
         netService = [[NSNetService alloc] initWithDomain:publishingDomain type:type name:publishingName port:port];
+        
+        NSDictionary *txtDictionary = [NSDictionary dictionaryWithObjectsAndKeys:@"5.0.4.0", @"rhd", @"1", @"vv", @"AppleTV3,2", @"model", macAddress, @"deviceid", @"0x100029ff", @"features", @"150.33", @"srcvers", nil];
+		[netService setTXTRecordData:[NSNetService dataFromTXTRecordDictionary:txtDictionary]];
+        
         [netService publish];
     }
 
