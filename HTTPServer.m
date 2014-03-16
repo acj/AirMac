@@ -439,10 +439,7 @@
 			
 			if (delegate && [delegate respondsToSelector:@selector(airplayDidAskRate)]) { 
 				_playRate =  [delegate airplayDidAskRate];
-			}	
-			
-
-			NSNumber * duration = [NSNumber numberWithInt:100];
+			}
 			
 			NSString *resp = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n \
 							  <!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n \
@@ -453,7 +450,7 @@
 							  \t<key>position</key>\n \
 							  \t<real>0.0</real>\n \
 							  </dict>\n \
-							  </plist>",[duration floatValue],_playPosition];
+							  </plist>"];
 			
 			NSData *data = [resp dataUsingEncoding: NSASCIIStringEncoding];
 			
