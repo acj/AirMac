@@ -250,6 +250,17 @@ static void TCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType typ
 		[netService setTXTRecordData:[NSNetService dataFromTXTRecordDictionary:txtDictionary]];
         
         [netService publish];
+        
+        // RAOP
+        NSString *serviceNameWithMacAddress = [NSString stringWithFormat:@"%@@%@", [macAddress stringByReplacingOccurrencesOfString:@":" withString:@""], publishingName];
+        
+        NSNetService *raopNetService = [[NSNetService alloc] initWithDomain:publishingDomain type:@"_raop._tcp" name:serviceNameWithMacAddress port:5000];
+		
+		NSDictionary *txtDictionaryRAOP = [NSDictionary dictionaryWithObjectsAndKeys:@"1", @"txtvers", @"2", @"ch", @"AppleTV3,2", @"am", @"1,2,3", @"cn", @"true", @"da", @"0,3,5", @"et", @"0,1,2", @"md", @"false", @"pw", @"false", @"sv", @"44100", @"sr", @"16", @"ss", @"UDP", @"tp", @"65537", @"vn", @"150.33", @"vs", @"0x4", @"sf", nil];
+        
+		[raopNetService setTXTRecordData:[NSNetService dataFromTXTRecordDictionary:txtDictionaryRAOP]];
+		
+        [raopNetService publish];
     }
 
     return YES;
