@@ -368,7 +368,7 @@
 			CFHTTPMessageSetHeaderFieldValue(response, (CFStringRef)@"Date", (CFStringRef)[NSString stringWithFormat:@"%@",date]);
 
 			CFHTTPMessageSetHeaderFieldValue(response, (CFStringRef)@"Content-Type", (CFStringRef)[NSString stringWithFormat:@"application/x-apple-plist+xml"]);
-			CFHTTPMessageSetHeaderFieldValue(response, (CFStringRef)@"Content-Length", (CFStringRef)[NSString stringWithFormat:@"%d", [data length]]);
+			CFHTTPMessageSetHeaderFieldValue(response, (CFStringRef)@"Content-Length", (CFStringRef)[NSString stringWithFormat:@"%lu", (unsigned long)[data length]]);
 			CFHTTPMessageSetHeaderFieldValue(response, (CFStringRef)@"X-Apple-Session-Id", (CFStringRef)[NSString stringWithFormat:@"00000000-0000-0000-0000-000000000000"]);
 			
 			
@@ -461,7 +461,7 @@
 			CFHTTPMessageRef response = CFHTTPMessageCreateResponse(kCFAllocatorDefault, 200, NULL, kCFHTTPVersion1_1); // OK
 			CFHTTPMessageSetHeaderFieldValue(response, (CFStringRef)@"Date", (CFStringRef)[NSString stringWithFormat:@"%@",date]);
 			CFHTTPMessageSetHeaderFieldValue(response, (CFStringRef)@"Content-Type", (CFStringRef)[NSString stringWithFormat:@"text/x-apple-plist+xml"]);
-			CFHTTPMessageSetHeaderFieldValue(response, (CFStringRef)@"Content-Length", (CFStringRef)[NSString stringWithFormat:@"%d", [data length]]);
+			CFHTTPMessageSetHeaderFieldValue(response, (CFStringRef)@"Content-Length", (CFStringRef)[NSString stringWithFormat:@"%lu", (unsigned long)[data length]]);
 			CFHTTPMessageSetBody(response, (CFDataRef)data);
 			
 			[mess setResponse:response];
