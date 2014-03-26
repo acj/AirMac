@@ -7,6 +7,7 @@
 //
 
 #import "AirmacAppDelegate.h"
+#import "Constants.h"
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <AppKit/AppKit.h>
 
@@ -46,8 +47,8 @@
 	
 	// Starting server
 	server = [[HTTPServer alloc] init];
-    [server setType:@"_airplay._tcp."]; // Register the airplay service
-	[server setPort:7000]; // port 7000 is not required, any port will do.
+    [server setType:AirPlayServiceType]; // Register the airplay service
+	[server setPort:AirPlayPort];
 	
 	NSString *name = NSMakeCollectable(SCDynamicStoreCopyComputerName(NULL, NULL));
 	
