@@ -5,7 +5,12 @@
 @implementation HTTPServer
 
 - (id)init {
-    connClass = [HTTPConnection self];
+    self = [super init];
+  
+    if (self) {
+        connClass = [HTTPConnection self];
+    }
+    
     return self;
 }
 
