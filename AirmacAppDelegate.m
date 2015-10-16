@@ -416,7 +416,7 @@
 	
 	// Switch between imageviews for animated transitions
 	NSImage *img = [[NSImage alloc] initWithData:photoData];
-	NSBitmapImageRep *rep = [[img representations] objectAtIndex: 0];
+	NSImageRep *rep = [[img representations] objectAtIndex: 0];
 	
 	if (CurrentImageView == 1)
 	{
